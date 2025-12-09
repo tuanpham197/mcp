@@ -11,12 +11,15 @@ async def test_list_tools():
     """Test that all expected tools are registered."""
     tools = await list_tools()
 
-    assert len(tools) == 3, "Expected 3 tools to be registered"
+    assert len(tools) == 6, "Expected 6 tools to be registered"
 
     tool_names = [tool.name for tool in tools]
     assert "search_files" in tool_names
     assert "read_file" in tool_names
     assert "get_pr_diff" in tool_names
+    assert "search_github_files" in tool_names
+    assert "read_github_file" in tool_names
+    assert "grep_github_repo" in tool_names
 
 
 @pytest.mark.asyncio

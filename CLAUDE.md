@@ -34,17 +34,24 @@ uv run ruff check .
 
 **Core Components:**
 - `src/mcp_server/`: Main package directory
-  - `server.py`: Main MCP server entrypoint and tool registration
+  - `server.py`: Main MCP server entrypoint and tool registration (6 tools)
   - `tools/`: MCP tool implementations
-    - `search.py`: File search (glob/grep) for local and GitHub repos
-    - `read.py`: Safe file reading with path validation
-    - `github.py`: GitHub API integration for fetching PR diffs
-- `tests/`: Unit tests for tool inputs/outputs
+    - `search.py`: File search (glob/grep) for local codebases
+    - `read.py`: Safe file reading with path validation for local files
+    - `github.py`: GitHub API integration (PR diffs, file search, file reading, code grep)
+- `tests/`: Unit tests for all tools (40 tests)
 
 **Tool Capabilities:**
-1. **Search**: Find files by name or grep content across codebase
-2. **Read**: Retrieve full file contents for analysis
-3. **Diffs**: Fetch and analyze Pull Request changes from GitHub
+
+*Local Operations:*
+1. **search_files**: Find files by name (glob) or content (grep) in local codebase
+2. **read_file**: Read local file contents with security validation
+
+*GitHub Operations:*
+3. **get_pr_diff**: Fetch and analyze Pull Request diffs
+4. **search_github_files**: Search for files by name in GitHub repositories
+5. **read_github_file**: Read file contents directly from GitHub repositories
+6. **grep_github_repo**: Search code content in GitHub repositories (grep-like)
 
 ## Critical Security Requirements
 

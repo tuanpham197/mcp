@@ -208,29 +208,58 @@ chmod -R +r /path/to/search
 
 Once configured, the following MCP tools are available:
 
+### Local File Operations
+
 1. **search_files**
    - Search by filename pattern (glob)
    - Search by content (grep)
    - Automatically filters sensitive files
 
 2. **read_file**
-   - Read file contents safely
+   - Read local file contents safely
    - Path traversal protection
    - Blocks sensitive files (.env, keys, etc.)
+
+### GitHub Operations
 
 3. **get_pr_diff**
    - Fetch GitHub PR diffs
    - Analyze code changes
    - Requires GitHub token for private repos
 
+4. **search_github_files**
+   - Search for files by name in GitHub repositories
+   - Filter by path prefix
+   - Returns file paths and URLs
+
+5. **read_github_file**
+   - Read file contents directly from GitHub
+   - Support for specific branches
+   - Base64 decoding handled automatically
+
+6. **grep_github_repo**
+   - Search code content in GitHub repositories
+   - GitHub Code Search API integration
+   - Returns matching files with URLs
+
 ## Example Usage in Claude
 
 Once installed, you can ask Claude:
 
+**Local Operations:**
 ```
 "Search for all Python files containing 'async def'"
 "Read the contents of src/mcp_server/server.py"
+"Find all .env files in this directory"
+```
+
+**GitHub Operations:**
+```
 "Get the diff for PR #42 in anthropics/anthropic-sdk-python"
+"Search for 'main.py' files in python/cpython repository"
+"Read the README.md from microsoft/vscode repository"
+"Search for 'async def' in fastapi/fastapi repository"
+"Read src/app.py from the main branch of owner/repo"
 ```
 
 ## Security Notes
